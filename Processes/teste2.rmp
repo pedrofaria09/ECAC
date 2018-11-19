@@ -125,6 +125,7 @@
       <connect from_op="Select Attributes" from_port="example set output" to_op="Cross Validation" to_port="example set"/>
       <connect from_op="Cross Validation" from_port="model" to_op="Apply Model" to_port="model"/>
       <connect from_op="Cross Validation" from_port="example set" to_port="result 1"/>
+      <connect from_op="Cross Validation" from_port="performance 1" to_port="result 4"/>
       <connect from_op="Apply Model" from_port="labelled data" to_op="Select Attributes (3)" to_port="example set input"/>
       <connect from_op="Apply Model" from_port="model" to_port="result 2"/>
       <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Write CSV" to_port="input"/>
@@ -134,6 +135,7 @@
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
       <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
     </process>
   </operator>
 </process>
