@@ -12,8 +12,8 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all" width="90" x="179" y="187">
-        <parameter key="repository_entry" value="//ECAC/Projeto/Data/all"/>
+      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_train_transactions" width="90" x="179" y="187">
+        <parameter key="repository_entry" value="../Data/all_with_loan_train_transactions"/>
       </operator>
       <operator activated="true" class="concurrency:correlation_matrix" compatibility="9.0.003" expanded="true" height="103" name="Correlation Matrix" width="90" x="380" y="187">
         <parameter key="attribute_filter_type" value="all"/>
@@ -31,7 +31,7 @@
         <parameter key="normalize_weights" value="true"/>
         <parameter key="squared_correlation" value="false"/>
       </operator>
-      <connect from_op="Retrieve all" from_port="output" to_op="Correlation Matrix" to_port="example set"/>
+      <connect from_op="Retrieve all_with_loan_train_transactions" from_port="output" to_op="Correlation Matrix" to_port="example set"/>
       <connect from_op="Correlation Matrix" from_port="example set" to_port="result 1"/>
       <connect from_op="Correlation Matrix" from_port="matrix" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
