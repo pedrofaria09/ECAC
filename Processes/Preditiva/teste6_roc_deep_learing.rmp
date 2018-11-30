@@ -54,12 +54,10 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.0.003" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="514" y="238">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.0.003" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="447" y="187">
         <list key="parameters">
-          <parameter key="Random Forest (2).number_of_trees" value="[1.0;100.0;10;linear]"/>
-          <parameter key="Random Forest (2).criterion" value="gain_ratio,information_gain,gini_index,accuracy"/>
-          <parameter key="Random Forest (2).maximal_depth" value="[-1.0;100.0;10;linear]"/>
-          <parameter key="Random Forest (2).random_splits" value="true,false"/>
+          <parameter key="Deep Learning.compute_variable_importances" value="true,false"/>
+          <parameter key="Deep Learning.reproducible_(uses_1_thread)" value="true,false"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -76,7 +74,7 @@
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="enable_parallel_execution" value="true"/>
             <process expanded="true">
-              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.0.003" expanded="true" height="103" name="Random Forest (2)" width="90" x="179" y="34">
+              <operator activated="false" class="concurrency:parallel_random_forest" compatibility="9.0.003" expanded="true" height="103" name="Random Forest (2)" width="90" x="179" y="34">
                 <parameter key="number_of_trees" value="20"/>
                 <parameter key="criterion" value="gain_ratio"/>
                 <parameter key="maximal_depth" value="30"/>
@@ -115,7 +113,7 @@
                 <parameter key="max_runtime_seconds" value="0"/>
                 <list key="expert_parameters"/>
               </operator>
-              <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="9.0.003" expanded="true" height="103" name="Decision Tree" width="90" x="179" y="340">
+              <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="9.0.003" expanded="true" height="103" name="Decision Tree" width="90" x="179" y="391">
                 <parameter key="criterion" value="information_gain"/>
                 <parameter key="maximal_depth" value="10"/>
                 <parameter key="apply_pruning" value="true"/>
@@ -126,7 +124,7 @@
                 <parameter key="minimal_size_for_split" value="4"/>
                 <parameter key="number_of_prepruning_alternatives" value="3"/>
               </operator>
-              <operator activated="false" class="k_nn" compatibility="9.0.003" expanded="true" height="82" name="k-NN" width="90" x="179" y="493">
+              <operator activated="false" class="k_nn" compatibility="9.0.003" expanded="true" height="82" name="k-NN" width="90" x="179" y="544">
                 <parameter key="k" value="2"/>
                 <parameter key="weighted_vote" value="true"/>
                 <parameter key="measure_types" value="MixedMeasures"/>
@@ -147,8 +145,46 @@
               <operator activated="false" class="naive_bayes" compatibility="9.0.003" expanded="true" height="82" name="Naive Bayes" width="90" x="246" y="187">
                 <parameter key="laplace_correction" value="true"/>
               </operator>
-              <connect from_port="training set" to_op="Random Forest (2)" to_port="training set"/>
-              <connect from_op="Random Forest (2)" from_port="model" to_port="model"/>
+              <operator activated="true" class="h2o:deep_learning" compatibility="9.0.000" expanded="true" height="82" name="Deep Learning" width="90" x="179" y="289">
+                <parameter key="activation" value="Rectifier"/>
+                <enumeration key="hidden_layer_sizes">
+                  <parameter key="hidden_layer_sizes" value="50"/>
+                  <parameter key="hidden_layer_sizes" value="50"/>
+                </enumeration>
+                <enumeration key="hidden_dropout_ratios"/>
+                <parameter key="reproducible_(uses_1_thread)" value="false"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="epochs" value="10.0"/>
+                <parameter key="compute_variable_importances" value="false"/>
+                <parameter key="train_samples_per_iteration" value="-2"/>
+                <parameter key="adaptive_rate" value="true"/>
+                <parameter key="epsilon" value="1.0E-8"/>
+                <parameter key="rho" value="0.99"/>
+                <parameter key="learning_rate" value="0.005"/>
+                <parameter key="learning_rate_annealing" value="1.0E-6"/>
+                <parameter key="learning_rate_decay" value="1.0"/>
+                <parameter key="momentum_start" value="0.0"/>
+                <parameter key="momentum_ramp" value="1000000.0"/>
+                <parameter key="momentum_stable" value="0.0"/>
+                <parameter key="nesterov_accelerated_gradient" value="true"/>
+                <parameter key="standardize" value="true"/>
+                <parameter key="L1" value="1.0E-5"/>
+                <parameter key="L2" value="0.0"/>
+                <parameter key="max_w2" value="10.0"/>
+                <parameter key="loss_function" value="Automatic"/>
+                <parameter key="distribution_function" value="AUTO"/>
+                <parameter key="early_stopping" value="false"/>
+                <parameter key="stopping_rounds" value="1"/>
+                <parameter key="stopping_metric" value="AUTO"/>
+                <parameter key="stopping_tolerance" value="0.001"/>
+                <parameter key="missing_values_handling" value="MeanImputation"/>
+                <parameter key="max_runtime_seconds" value="0"/>
+                <list key="expert_parameters"/>
+                <list key="expert_parameters_"/>
+              </operator>
+              <connect from_port="training set" to_op="Deep Learning" to_port="training set"/>
+              <connect from_op="Deep Learning" from_port="model" to_port="model"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -237,7 +273,7 @@
             </list>
           </operator>
           <operator activated="true" class="write_csv" compatibility="9.0.003" expanded="true" height="82" name="Write CSV" width="90" x="447" y="34">
-            <parameter key="csv_file" value="/Users/pedrofaria/Documents/FEUP/5Ano/ECAC/Projeto/ficheiros_competicao/teste5.csv"/>
+            <parameter key="csv_file" value="/Users/pedrofaria/Documents/FEUP/5Ano/ECAC/Projeto/ficheiros_competicao/teste5_deep_learing.csv"/>
             <parameter key="column_separator" value=","/>
             <parameter key="write_attribute_names" value="true"/>
             <parameter key="quote_nominal_values" value="false"/>
@@ -270,6 +306,7 @@
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="195" y="548">Cuidado com os atributos do deep, alguns nao deixam correr dentro do optimizer.</description>
     </process>
   </operator>
 </process>
