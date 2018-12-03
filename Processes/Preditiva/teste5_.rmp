@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_train_transactions" width="90" x="45" y="136">
-        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_train_transactions"/>
+        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_transactions_train"/>
       </operator>
       <operator activated="true" class="select_attributes" compatibility="9.0.003" expanded="true" height="82" name="Select Attributes" width="90" x="179" y="136">
         <parameter key="attribute_filter_type" value="subset"/>
@@ -165,7 +165,7 @@
         </process>
       </operator>
       <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_test_transactions" width="90" x="45" y="34">
-        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_test_transactions"/>
+        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_transactions_test"/>
       </operator>
       <operator activated="true" class="select_attributes" compatibility="9.0.003" expanded="true" height="82" name="Select Attributes (2)" width="90" x="179" y="34">
         <parameter key="attribute_filter_type" value="subset"/>

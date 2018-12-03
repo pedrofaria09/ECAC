@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.0.003">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.0.003" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve trans_test" width="90" x="112" y="34">
+        <parameter key="repository_entry" value="../../Data/Limpos/trans_test"/>
+      </operator>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.0.003" expanded="true" height="68" name="Execute trans_aggregate" width="90" x="313" y="34">
+        <parameter key="process_location" value="trans_aggregate"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="9.0.003" expanded="true" height="68" name="Store" width="90" x="581" y="34">
+        <parameter key="repository_entry" value="../../Data/Tratados/trans_aggregate_test"/>
+      </operator>
+      <connect from_op="Retrieve trans_test" from_port="output" to_op="Execute trans_aggregate" to_port="input 1"/>
+      <connect from_op="Execute trans_aggregate" from_port="result 1" to_op="Store" to_port="input"/>
+      <connect from_op="Store" from_port="through" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>

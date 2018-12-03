@@ -12,13 +12,13 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve Random_Forest_Opt" width="90" x="313" y="136">
-        <parameter key="repository_entry" value="//ECAC/Projeto/Processes/Preditiva/Random_Forest_Opt"/>
+      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve Random_Forest_Opt" width="90" x="179" y="34">
+        <parameter key="repository_entry" value="../../Processes/Preditiva/Random_Forest_Opt"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_test_transactions (2)" width="90" x="112" y="34">
-        <parameter key="repository_entry" value="//ECAC/Projeto/Data/Tratados/all_with_loan_test_transactions"/>
+      <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_test_transactions (2)" width="90" x="179" y="136">
+        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_transactions_test"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="Subprocess" width="90" x="581" y="34">
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="Subprocess" width="90" x="447" y="34">
         <process expanded="true">
           <operator activated="true" class="apply_model" compatibility="9.0.003" expanded="true" height="82" name="Apply Model (4)" width="90" x="45" y="34">
             <list key="application_parameters"/>
@@ -46,7 +46,7 @@
             </list>
           </operator>
           <operator activated="true" class="write_csv" compatibility="9.0.003" expanded="true" height="82" name="Write CSV" width="90" x="447" y="34">
-            <parameter key="csv_file" value="/Users/pedrofaria/Documents/FEUP/5Ano/ECAC/Projeto/ficheiros_competicao/teste5.csv"/>
+            <parameter key="csv_file" value="../../Results/random_forest.csv"/>
             <parameter key="column_separator" value=","/>
             <parameter key="write_attribute_names" value="true"/>
             <parameter key="quote_nominal_values" value="false"/>
