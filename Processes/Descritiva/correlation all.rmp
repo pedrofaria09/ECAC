@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="9.0.003" expanded="true" height="68" name="Retrieve all_with_loan_train_transactions" width="90" x="179" y="34">
-        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_train_transactions"/>
+        <parameter key="repository_entry" value="../../Data/Tratados/all_with_loan_transactions_train"/>
       </operator>
       <operator activated="true" class="concurrency:correlation_matrix" compatibility="9.0.003" expanded="true" height="103" name="Correlation Matrix" width="90" x="380" y="34">
         <parameter key="attribute_filter_type" value="all"/>
